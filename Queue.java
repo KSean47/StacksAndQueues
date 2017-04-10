@@ -1,61 +1,45 @@
-public class Queue{
-  
-  private Node back = null;
-  private Node front = null;
-  
-  
+
+
+public class Queue {
+ Node front = null;
+
+ public void enqueue(Node node){
+  if(node == null){
+   return;
+  }
+      if (front ==null){
+       front=node;
+    }
+     else{
+       Node temp = front;
+       while(temp.getNext() != null){         
+         temp = temp.getNext();
+       }
+        
+           temp.setNext(node);
+          node.setNext(null); 
+       
+     }
+    }
  
-  public void enqueue(Node newNode) {
-    if (this.isEmpty()) {
-      this.back = newNode;
-      this.front = newNode;
-    }
-    else 
-    {
-      this.front.setNext(newNode);
-      this.back = newNode;
-    }
+ public Node dequeue() {
+  if (front == null) {
+   return null;
   }
-  
-  public void print()
-  {
-      Node current = this.front;
-      while(current != null)
-      {
-        System.out.println(current.toString());
-        current = current.getNext();
-      }
-      System.out.println("");
-  }
-  
-  public boolean isEmpty() 
-  {
-    return this.back==null;
+  Node temp = front;
+  front = front.getNext();
+  temp.setNext(null);
+  return temp;
+
+ }
+
+ public Node peek() {
+  if (front == null) {
+   return null;
   }
 
-  public Node dequeue()
-  {
-    if (this.isEmpty())
-    {
-      return null;
-    }
-    else 
-    {
-      Node current = this.front;
-      this.back = back.getNext();
-      this.front = null;
-      return current;
-    }
-  }
-  
-  public Node peek() 
-  {
-    return this.back;
-  }
-  
-  public void QueueToStack(Queue q1, Stack s1)
-  {
-    
-  }
+  Node temp = new Node(front.getName());
+  return temp;
+ }
 
 }

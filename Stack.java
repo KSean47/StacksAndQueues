@@ -1,76 +1,33 @@
-public class Stack{
 
-  private Node top = null;
- 
+public class Stack{
+  Node top=null ;
   
-  public void print()
-  {
-      Node current = this.top;
-      while(current != null)
-      {
-        System.out.println(current.toString());
-        current = current.getNext();
-      }
-      System.out.println("");
+  public void push(Node newnode){
+  if(top == null){
+    top = newnode;
+  }
+  else{
+   newnode.setNext(top);
+   top = newnode;
+  }
   }
   
-  public boolean isEmpty() 
-  {
-    return this.top==null;
-  }
-  
-  public void push(Node newNode) 
-  {
-    newNode.setNext(this.top);
-    this.top = newNode;
-  }
-  
-  public Node pop()
-  {
-    if (this.isEmpty())
-    {
+  public Node pop(){
+    if(top == null){
       return null;
     }
-    else 
-    {
-      Node current = this.top;
-      this.top = top.getNext();
-      return current;
-    }
+    Node temp = top;    
+    top = top.getNext();
+    temp.setNext(null);
+      return temp;
   }
   
-  public Node peek() 
-  {
-    return this.top;
-  }
-
-  public void StackToQueue(Stack s1, Queue q1)
-  {
-    Node current = s1.top;
-    while (current != null)
-    {
-       while(!s1.isEmpty())
-     {
-       Node a = (Node) s1.pop();
-       q1.enqueue(a);
-     }
-     current = current.getNext();
+  public Node peek(){
+    if(top == null){
+      return null;
     }
- 
-      
+   Node temp = new Node(top.getName());
+    return temp;
   }
   
-   public void StackToStack(Stack s1, Stack s2)
-  {
-     Node current = s1.top;
-    while (current != null)
-    {
-       while(!s1.isEmpty())
-     {
-       Node a = (Node) s1.pop();
-       s1.push(a);
-     }
-     current = current.getNext();
-    }
-  }
 }
